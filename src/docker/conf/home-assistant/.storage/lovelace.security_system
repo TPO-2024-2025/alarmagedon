@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.security_system",
+  "data": {
+    "config": {
+      "title": "Varnostni sistem",
+      "views": [
+        {
+          "title": "Alarm",
+          "path": "alarm",
+          "panel": false,
+          "badges": [
+            {
+              "type": "entity",
+              "entity": "input_boolean.simulate_motion_vhod"
+            },
+            {
+              "type": "entity",
+              "show_name": false,
+              "show_state": true,
+              "show_icon": true,
+              "entity": "input_boolean.simulate_motion_hodnik"
+            },
+            {
+              "type": "entity",
+              "entity": "input_boolean.simulate_motion_klet"
+            },
+            {
+              "type": "entity",
+              "entity": "input_boolean.simulate_sound_dvorisce"
+            }
+          ],
+          "cards": [
+            {
+              "type": "custom:alarm-panel-cards",
+              "entity": "alarm_control_panel.dom"
+            },
+            {
+              "type": "alarm-panel",
+              "states": [
+                "arm_home",
+                "arm_away"
+              ],
+              "entity": "alarm_control_panel.dom"
+            },
+            {
+              "type": "logbook",
+              "target": {
+                "entity_id": [
+                  "alarm_control_panel.dom"
+                ]
+              }
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.motion_detector_vhod"
+                },
+                {
+                  "entity": "binary_sensor.motion_detector_hodnik"
+                },
+                {
+                  "entity": "binary_sensor.motion_detector_klet"
+                },
+                {
+                  "entity": "binary_sensor.sound_detector_dvorisce"
+                },
+                {
+                  "entity": "binary_sensor.sensor2"
+                }
+              ],
+              "state_color": true,
+              "title": "Senzorji"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "input_text.user_email"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

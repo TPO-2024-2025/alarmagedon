@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace.security_system",
+  "data": {
+    "config": {
+      "views": [
+        {
+          "path": "default_view",
+          "title": "Home",
+          "cards": [
+            {
+              "type": "alarm-panel",
+              "states": [
+                "arm_home",
+                "arm_away"
+              ],
+              "entity": "alarm_control_panel.dom"
+            }
+          ],
+          "badges": []
+        }
+      ]
+    }
+  }
+}

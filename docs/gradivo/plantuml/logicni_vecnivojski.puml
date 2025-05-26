@@ -1,0 +1,58 @@
+@startuml
+title Večplastna arhitektura varnostnega sistema
+
+skinparam packageStyle rectangle
+skinparam linetype ortho
+skinparam defaultTextAlignment center
+
+' Predstavitvena plast
+package "Predstavitvena plast" as UI {
+  class "Prijavni obrazec"
+  class "Profil uporabnika"
+  class "Prepoznavanje obraza"
+  class "Pregled dogodkov"
+  class "Nadzorna plošča"
+}
+
+' Aplikacijska plast
+package "Aplikacijska plast" as APP {
+  class "Avtentikacija"
+  class "Upravljanje dogodkov"
+  class "Obdelava obraza"
+  class "Upravljanje uporabnikov"
+}
+
+' Poslovni model
+package "Poslovni model" as MODEL {
+  class "Uporabnik"
+  class "Alarm"
+  class "Senzor"
+  class "Dogodek"
+  class "Obvestilo"
+}
+
+' Vztrajnostna plast
+package "Vztrajnostna plast" as DB {
+  class "Shranjevanje podatkov"
+}
+
+' Zunanji sistemi
+package "Zunanji sistemi (Home Assistant)" as EXT {
+  class "HA Senzor entity"
+  class "HA Alarm entity"
+  class "HA Kamera entity"
+  class "IoT Gateway"
+}
+
+' Povezave med paketi (samo)
+UI --> APP : zahteva
+APP --> UI : prikaz
+
+APP --> MODEL : manipulacija entitet
+MODEL --> DB : shrani / beri
+DB --> MODEL : rezultat
+
+APP --> EXT : pošlji stanje
+EXT --> APP : status senzorjev
+
+@enduml

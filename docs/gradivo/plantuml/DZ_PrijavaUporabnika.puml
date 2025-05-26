@@ -1,0 +1,65 @@
+@startuml DZ_PrijavaUporabnika
+!theme plain
+hide footbox
+
+title Prijava uporabnika z obveznim skenom, če ni avtoriziran
+
+actor Uporabnik
+
+Uporabnik -> "ZM-Prijava": Vnos prijavnih podatkov (uporabniško ime, geslo)
+activate "ZM-Prijava"
+
+"ZM-Prijava" -> "K-Prijava": preveriPrijavo(uporabniškoIme, geslo)
+activate "K-Prijava"
+
+"K-Prijava" -> "R-BazaPodatkov": preveriUporabnika()
+activate "R-BazaPodatkov"
+"R-BazaPodatkov" --> "K-Prijava": prijava uspešna
+deactivate "R-BazaPodatkov"
+
+"K-Prijava" -> "R-BazaPodatkov": preveriČeJeAvtenticiran()
+activate "R-BazaPodatkov"
+"R-BazaPodatkov" --> "K-Prijava": face_authenticated = true/false
+deactivate "R-BazaPodatkov"
+
+alt face_authenticated == false
+  "K-Prijava" --> "ZM-SkenObraza": preusmeritev na obrazno avtentikacijo
+  deactivate "K-Prijava"
+  activate "ZM-SkenObraza"
+
+  "ZM-SkenObraza" -> "K-FaceAuth": authenticateFace()
+  activate "K-FaceAuth"
+
+  "K-FaceAuth" -> "R-BrowserLocalStorage": pridobiShranjenObraz()
+  activate "R-BrowserLocalStorage"
+  "R-BrowserLocalStorage" --> "K-FaceAuth": shranjeniSken
+  deactivate "R-BrowserLocalStorage"
+
+  "K-FaceAuth" -> "V-Kamera": zajemi trenutni obraz
+  activate "V-Kamera"
+  "V-Kamera" --> "K-FaceAuth": trenutniSken
+  deactivate "V-Kamera"
+
+  "K-FaceAuth" --> "ZM-SkenObraza": rezultatPrimerjave (ujemanje / neuspeh)
+  deactivate "K-FaceAuth"
+
+  alt ujemanje
+    "ZM-SkenObraza" -> "R-BazaPodatkov": setFaceAuthenticated(true)
+    activate "R-BazaPodatkov"
+    "R-BazaPodatkov" --> "ZM-SkenObraza": potrjeno
+    deactivate "R-BazaPodatkov"
+
+    "ZM-SkenObraza" -> "ZM-NadzornaPlošča": preusmeritev na glavni sistem
+  else neuspeh
+    "ZM-SkenObraza" --> "ZM-SkenObraza": prikaz napake in ponovni poskus
+  end
+
+  deactivate "ZM-SkenObraza"
+
+else authenticated == true
+  "K-Prijava" -> "ZM-NadzornaPlošča": preusmeritev na glavni sistem
+  deactivate "K-Prijava"
+end
+
+deactivate "ZM-Prijava"
+@enduml

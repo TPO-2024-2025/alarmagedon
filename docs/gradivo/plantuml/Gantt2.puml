@@ -1,0 +1,84 @@
+@startgantt
+title Terminski načrt
+
+skinparam backgroundColor #ffffff
+language sl
+printscale daily
+
+wednesday are closed
+thursday are closed
+2025-04-01 is closed
+2025-04-27 is closed
+2025-05-01 is closed
+2025-05-02 is closed
+
+2025-03-17 is colored in #64b5f6
+2025-04-07 is colored in #64b5f6
+2025-05-05 is colored in #64b5f6
+2025-05-26 is colored in #64b5f6
+
+Project starts 2025-02-20
+
+[Predpriprave] as [A0] lasts 4 days
+
+-- 1. iteracija --
+
+[A0] is colored in #ff9999
+[Izbira izziva] as [A1] lasts 2 days and starts at [A0]'s end  
+[A1] is colored in #ff9999
+[Pregled dokumentacije] as [A2] lasts 2 days and starts at [A1]'s end
+[A2] is colored in #ff9999
+[Planiranje prve iteracije] as [A3] lasts 2 days and starts at [A2]'s end
+[A3] is colored in #ff9999
+[Izdelava projektnega načrta] as [A4] lasts 3 days and starts at [A3]'s end
+[A4] is colored in #ff9999
+[Definiranje ciljev projekta] as [A5] lasts 3 days and starts at [A3]'s end
+[Identificiranje omejitev in tveganj] as [A6] lasts 3 days and starts at [A3]'s end
+[Sestava predloga projekta] as [A7] lasts 5 days and starts at [A4]'s end
+[A7] is colored in #ff9999
+[Oddaja predloga projekta (17.3.)] happens at 2025-03-17
+
+-- 2. iteracija --
+
+[Oblikovanje UI: Osnovni mehanizem] as [A8] lasts 3 days and starts at [A7]'s end
+[A8] is colored in #ff9999
+[Osnovna integracija z Home Assistant] as [A9] lasts 3 days and starts at [A8]'s end
+[A9] is colored in #ff9999
+[Postavitev baze] as [A10] lasts 3 days and starts at [A8]'s end
+[Obvestila v realnem času] as [A11] lasts 3 days and starts at [A8]'s end
+[Simulacija senzorjev] as [A12] lasts 2 days and starts at [A11]'s end
+[A12] is colored in #ff9999
+[Izdelava osnutka sistema] as [A13] lasts 7 days and starts at [A12]'s end
+[A13] is colored in #ff9999
+[Oddaja osnutka sistema (7.4.)] happens at 2025-04-07
+
+-- 3. iteracija --
+
+
+[Odstranitev Android aplikacije in administratorske vloge] as [A14] lasts 1 day and starts at [A13]'s end
+[A14] is colored in #ff9999
+
+[Sprememba use case diagrama] as [A15] lasts 1 day and starts at [A14]'s end
+[A15] is colored in #ff9999
+
+[Izdelava UML diagramov (MVC, večplastni, fizični)] as [A16] lasts 6 days and starts at [A15]'s end
+[A16] is colored in #ff9999
+
+[Posodobitev testnega scenarija] as [A17] lasts 2 days and starts at [A16]'s end
+[A17] is colored in #ff9999
+
+[Izdelava izvedljivega sistema] as [A18] lasts 8 days and starts at [A17]'s end
+[A18] is colored in #ff9999
+
+[Oddaja izvedljivega sistema (5.5.)] happens at 2025-05-05
+
+
+-- 4. iteracija --
+
+[Izdelava končne izdaje] as [A20] lasts 15 days and starts at [A18]'s end
+[A20] is colored in #ff9999
+[Oddaja končnega poročila (26.5.)] happens at 2025-05-26
+
+[Konec izvajanja predmeta (31.5.)] happens at 2025-05-31
+
+@endgantt

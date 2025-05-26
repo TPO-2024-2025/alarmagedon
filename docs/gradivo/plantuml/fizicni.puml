@@ -1,0 +1,46 @@
+@startuml
+title Fizični pogled - Varnostni sistem
+
+skinparam defaultTextAlignment center
+skinparam linetype ortho
+
+' Naprava: Uporabniški računalnik
+node "Uporabniška naprava (PC)" {
+  node "OS + Brskalnik" {
+    artifact "index.html"
+    [Spletna aplikacija] <<Subsystem>>
+    "index.html" --> [Spletna aplikacija]
+  }
+}
+
+' Naprava: Aplikacijski strežnik
+node "Aplikacijski strežnik (Docker)" {
+  artifact "app.py"
+  artifact "api_router.py"
+  artifact "face_auth_card.py"
+
+  [Aplikacijska logika] <<Subsystem>>
+  "app.py" --> [Aplikacijska logika]
+  "api_router.py" --> [Aplikacijska logika]
+  "face_recognition.py" --> [Aplikacijska logika]
+}
+
+' Zunanji sistem: Home Assistant
+node "Home Assistant (zunanja integracija)" {
+  artifact "configuration.yaml"
+  [HA Entitete] <<Component>>
+  "configuration.yaml" --> [HA Entitete]
+}
+
+' Nov del: Simulacija senzorjev
+node "Simulacija senzorjev" {
+  artifact "simulator.py"
+  [MQTT Publisher] <<Component>>
+  "simulator.py" --> [MQTT Publisher]
+  [MQTT Publisher] --> [HA Entitete] : MQTT
+}
+
+' Povezave
+[Spletna aplikacija] --> [Aplikacijska logika] : HTTP/REST
+[Aplikacijska logika] --> [HA Entitete] :  HTTP
+@enduml

@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "auth_provider.homeassistant",
+  "data": {
+    "users": [
+      {
+        "username": "ena",
+        "password": "JDJiJDEyJFR1cUFHbDNkaTJrLi44N1E0TXFlT09xYTk5aXJMV1JaUk10UkU5ZTcxSi5LR2xpbURxbnBl"
+      }
+    ]
+  }
+}

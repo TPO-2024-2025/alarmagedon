@@ -1,0 +1,35 @@
+@startuml
+|Uporabnik|
+start
+:Prijava v sistem (geslo ali prepoznava obraza);
+if (Uspešna prijava?) then (da)
+  :Dostop do funkcij;
+  fork
+    :Spreminjanje načina varovanja;
+  fork again
+    :Pregled zgodovine dogodkov;
+  end fork
+else (ne)
+  :Pojavi se sporočilo o napaki;
+endif
+
+|Senzorji|
+:Zaznava gibanja ali zvoka;
+:Pošlji signal centralnemu sistemu;
+
+|Spletna aplikacija|
+if (Način "Odsoten" aktiven?) then (da)
+  :Začni odštevanje 1 minute;
+  if (Deaktivacija alarma?) then (da)
+    :Ustavi sprožitev alarma;
+  else (ne)
+    :Sproži alarm;
+    :Pošlji obvestilo uporabniku;
+  endif
+else (ne)
+  :Zabeleži dogodek;
+endif
+
+|Uporabnik|
+stop
+@enduml

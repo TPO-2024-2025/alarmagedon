@@ -1,0 +1,44 @@
+@startuml
+skinparam Shadowing false
+skinparam ArrowFontStyle normal
+skinparam ArrowFontName Courier
+skinparam ArrowFontSize 10
+skinparam Handwritten false
+skinparam RoundCorner 8
+skinparam DefaultFontName Arial
+skinparam DefaultFontSize 12
+
+skinparam ActorBackgroundColor #lightblue
+skinparam UsecaseBackgroundColor #lightgreen
+skinparam RectangleBackgroundColor #FEFECE
+
+title Varnostni sistem (posodobljeno)
+
+left to right direction
+
+:Uporabnik: as User #tan
+:Senzorji: as Senzorji #violet
+
+rectangle "Varnostni sistem" {
+
+    usecase "Registracija novega uporabnika" as U4
+    usecase "Prijava v spletno aplikacijo" as U5
+    usecase "Spreminjanje nastavitev" as U8
+    usecase "Sprožitev alarma" as U10
+    usecase "Pošiljanje obvestil" as U11
+    usecase "Izklop alarma" as U7
+    usecase "Pregled zgodovine" as U14
+}
+
+Senzorji -[#red]-> U10
+
+U10 .[#blue].> U11 : <<include>>
+
+User -right[#green]-> U4
+User -right[#green]-> U5
+User -right[#green]-> U7
+User -right[#green]-> U8
+User -right[#green]-> U14
+
+
+@enduml

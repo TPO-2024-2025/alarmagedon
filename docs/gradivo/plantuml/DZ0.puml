@@ -1,0 +1,71 @@
+@startuml DZ_RegistracijaUporabnika
+!theme plain
+hide footbox
+
+title Registracija uporabnika
+
+actor Uporabnik
+
+Uporabnik -> "ZM-Registracija": Izbere možnost registracija uporabnika
+activate "ZM-Registracija"
+"ZM-Registracija" --> "ZM-Registracija": Prikaz polj za vnos podatkov
+
+
+Uporabnik -> "ZM-Registracija": vnos podatkov (uporabniško ime, geslo, e-mail)
+
+"ZM-Registracija" -> "K-Prijava": registracija(uporabniskoIme, geslo, mail)
+activate "K-Prijava"
+
+"K-Prijava" -> "K-Prijava": preveriPodatke()
+"K-Prijava" -> "R-BazaPodatkov": preveri obstoj uporabnika
+activate "R-BazaPodatkov"
+"R-BazaPodatkov" --> "K-Prijava": vrni rezultat
+deactivate "R-BazaPodatkov"
+
+alt veljavni podatki
+  opt skeniranje obraza
+    "ZM-Registracija" --> "ZM-Registracija": prikaz gumba za začetek skeniranja obraza
+    Uporabnik -> "ZM-Registracija": klik na gumb "Sken obraza"
+    "ZM-Registracija" -> "K-Prijava": skenObraza()
+    "K-Prijava" -> "K-Kamera": pribaviSkenObraza()
+    activate "K-Kamera"
+    
+    "K-Kamera" -> "V-Kamera": skenirajObraz()
+    activate "V-Kamera"
+    "V-Kamera" --> "K-Kamera": podatki skena obraza
+    deactivate "V-Kamera"
+    
+    "K-Kamera" --> "K-Prijava": vrniSkenObraza()
+    deactivate "K-Kamera"
+  end
+  
+  "K-Prijava" -> "R-BazaPodatkov": dodajMail(mail)
+  activate "R-BazaPodatkov"
+  "R-BazaPodatkov" --> "K-Prijava": potrditev
+  deactivate "R-BazaPodatkov"
+  
+  opt če je skeniran obraz
+    "K-Prijava" -> "R-BazaPodatkov": dodajSkenObraza(skenObraza)
+    activate "R-BazaPodatkov"
+    "R-BazaPodatkov" --> "K-Prijava": potrditev
+    deactivate "R-BazaPodatkov"
+  end
+  
+  "K-Prijava" -> "R-HomeAssistant": registracija novega uporabnika
+  activate "R-HomeAssistant"
+  "R-HomeAssistant" --> "K-Prijava": potrditev
+  deactivate "R-HomeAssistant"
+  
+  "K-Prijava" --> "ZM-Registracija": shraniNovegaUporabnika()
+  "ZM-Registracija" --> "ZM-Registracija": prikaz obvestila o uspešni registraciji
+  "ZM-Registracija" -> "ZM-Prijava": preusmeri na prijavo
+  
+else neveljavni podatki
+  "K-Prijava" --> "ZM-Registracija": vrniNapako()
+  "ZM-Registracija" --> "ZM-Registracija": prikazNapake()
+end
+
+deactivate "K-Prijava"
+deactivate "ZM-Registracija"
+
+@enduml

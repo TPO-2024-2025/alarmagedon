@@ -1,0 +1,50 @@
+@startuml
+skinparam packageStyle rectangle
+skinparam defaultTextAlignment center
+skinparam ArrowColor DarkBlue
+skinparam ArrowThickness 1.5
+skinparam ArrowFontStyle bold
+skinparam ArrowFontColor DarkBlue
+skinparam linetype ortho
+left to right direction
+title MVC Paketni Diagram - Varnostni Sistem
+
+package "Pogled" {
+  [Prijavni obrazec pogled]
+  [Odjava pogled]
+  [Pregled profila pogled]
+  [Urejanje profila pogled]
+  [Izklop alarma pogled]
+  [Spreminjanje statusa alarma pogled]
+  [Zgodovina dogodkov pogled]
+  [Nadzorna plošča pogled]
+  [Prikaz opozoril pogled]
+  [Prepoznavanje obraza pogled]
+  [Dogodki alarma pogled]
+}
+
+package "Krmilnik" {
+  [Uporabniski profil Kontroler]
+  [Alarm Kontroler]
+  [Dogodki Kontroler]
+  [Opozorilo Kontroler]
+  [PrepoznavanjeObraza Kontroler]
+}
+
+package "Model" {
+  [Uporabnik]
+  [Alarm]
+  [Senzor]
+  [Dogodek]
+  [Biometrija]
+  [Opozorilo]
+  [HA Entitete]
+}
+
+' Usmerjene povezave med paketi
+[Pogled] --> [Krmilnik] 
+[Krmilnik] --> [Model] 
+[Model] --> [Pogled] 
+[Krmilnik] --> [Pogled] 
+
+@enduml

@@ -1,0 +1,15 @@
+{
+    "body": {
+        "contact": [
+            "mailto:nk37190@student.uni-lj.si"
+        ],
+        "key": {
+            "e": "AQAB",
+            "kty": "RSA",
+            "n": "vtG9R3-fX-JxFs4v6YpV9BiRt1anrmNfTm-96hRdQ2uUX9MnUwgafslomVzMMWjEKf4TrVk9UwCeyGe8dwltO1zA-z9cFgPvyRanBvb2IpB9CGI4X4DWu2XCy679bjO-hhd-5695d1TAbMnH2bx7OkwszpW7GKVK18zkGRvYPHWoMvvOJ4xSW0kEhJm4sqYAFg0X0Ga3gA2Z_T0QIsitb4tVKRKih1audHTiHt3S0G_yHl5wJa6jXUkssxAFivT8K1P1fCpZ6rw5vwGfQS3trskpuuT3Ia4Slggng3ob-_NvTwIzGqCX9G07DIu8As0EAOp702QwZzpeeVhgwxsHWQ"
+        },
+        "status": "valid"
+    },
+    "terms_of_service": "https://letsencrypt.org/documents/LE-SA-v1.5-February-24-2025.pdf",
+    "uri": "https://acme-v02.api.letsencrypt.org/acme/acct/2420436317"
+}

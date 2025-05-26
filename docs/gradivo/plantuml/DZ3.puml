@@ -1,0 +1,84 @@
+@startuml DZ_DetekcijaGibanjaInSprozitevAlarma
+!theme plain
+hide footbox
+
+title Detekcija gibanja ali zvoka in sprožitev alarma
+
+participant "R-Senzor" as Senzor
+participant "R-HomeAssistant" as HomeAssistant
+participant "K-Senzor" as KSenzor
+participant "K-Alarm" as KAlarm
+participant "K-Obvestilo" as KObvestilo
+participant "R-Obvestilo" as RObvestilo
+participant "R-BazaPodatkov" as BazaPodatkov
+participant "R-Dogodek" as Dogodek
+participant "R-Alarm" as Alarm
+
+alt aktivacija senzorja prek MQTT
+  "ZM-SimulacijaSenzorja" -> "K-MQTT": aktivirajSenzor(id)
+  activate "K-MQTT"
+  "K-MQTT" -> "R-HomeAssistant": aktiviraj senzor
+  deactivate "K-MQTT"
+else fizična aktivacija
+  note over Senzor
+    Senzor zazna gibanje 
+    ali zvok
+  end note
+end
+
+activate Senzor
+Senzor -> HomeAssistant: pošlji signal
+activate HomeAssistant
+
+HomeAssistant -> KSenzor: obdelujZaznave()
+activate KSenzor
+
+KSenzor -> HomeAssistant: vrniStanjeSistema()
+HomeAssistant --> KSenzor: stanje sistema
+
+alt če je sistem aktiven
+  KSenzor -> KAlarm: sproziSimulacijoAlarma()
+  activate KAlarm
+  
+  KAlarm -> Alarm: aktiviraj alarm
+  activate Alarm
+  Alarm --> KAlarm: potrditev
+  deactivate Alarm
+  
+  KAlarm --> KSenzor: potrditev
+  deactivate KAlarm
+  
+  KSenzor -> BazaPodatkov: dodajDogodek("sprožitev alarma")
+  activate BazaPodatkov
+  BazaPodatkov -> Dogodek: ustvari nov dogodek
+  activate Dogodek
+  Dogodek --> Dogodek: nastavi id, vrsto, čas
+  Dogodek --> BazaPodatkov: vrni dogodek
+  deactivate Dogodek
+  BazaPodatkov --> KSenzor: potrditev
+  deactivate BazaPodatkov
+  
+  KSenzor -> KObvestilo: posljiObvestilo()
+  activate KObvestilo
+  
+  KObvestilo -> BazaPodatkov: pribaviMailUporabnika()
+  activate BazaPodatkov
+  BazaPodatkov --> KObvestilo: mail uporabnika
+  deactivate BazaPodatkov
+  
+  KObvestilo -> RObvestilo: ustvari obvestilo
+  activate RObvestilo
+  RObvestilo --> KObvestilo: potrditev
+  deactivate RObvestilo
+  
+  KObvestilo --> KSenzor: potrditev
+  deactivate KObvestilo
+end
+
+KSenzor --> HomeAssistant: potrditev
+deactivate KSenzor
+HomeAssistant --> Senzor: potrditev
+deactivate HomeAssistant
+deactivate Senzor
+
+@enduml

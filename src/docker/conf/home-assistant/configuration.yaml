@@ -1,0 +1,112 @@
+# Loads default set of integrations. Do not remove.
+default_config:
+
+MQTT:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_named themes
+  extra_module_url:
+  - /local/face-auth-card.js
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+alarm_control_panel:
+  - platform: manual
+    name: Dom
+    code: "1234"
+    code_arm_required: false
+    arming_time: 20
+    delay_time: 60
+    trigger_time: 60
+    armed_away:
+      delay_time: 3        # only armed_away has 3 s pending
+
+lovelace:
+  mode: yaml
+  resources:
+  - url: /local/face-api.min.js
+    type: js
+  - url: /local/alarm-panel-cards.js?v=7
+    type: module
+
+input_text:
+  face_descriptor:
+    name: Face Descriptor
+    max: 2048
+
+## Simulacija senzorja za gibanje v različnih prostorih
+binary_sensor:
+  - platform: template
+    sensors:
+      motion_detector_vhod:
+        friendly_name: "Motion Sensor (Glavni vhod)"
+        value_template: "{{ is_state('input_boolean.simulate_motion_vhod', 'on') }}"
+        attribute_templates:
+          alarm_mode: both
+        icon_template: mdi:motion-sensor
+      motion_detector_hodnik:
+        friendly_name: "Motion Sensor (Hodnik)"
+        value_template: "{{ is_state('input_boolean.simulate_motion_hodnik', 'on') }}"
+        attribute_templates:
+          alarm_mode: armed_away
+        icon_template: mdi:motion-sensor
+      motion_detector_klet:
+        friendly_name: "Motion Sensor (Klet)"
+        value_template: "{{ is_state('input_boolean.simulate_motion_klet', 'on') }}"
+        attribute_templates:
+          alarm_mode: armed_home
+        icon_template: mdi:motion-sensor
+      sound_detector_dvorisce:
+        friendly_name: "Sound Sensor (Dvorisče)"
+        value_template: "{{ is_state('input_boolean.simulate_sound_dvorisce', 'on') }}"
+        attribute_templates:
+          alarm_mode: both
+        icon_template: mdi:volume-high
+
+# Switch-i za simulacijo gibanja
+input_boolean:
+  face_authenticated:
+    name: Face Authenticated
+    initial: false
+  enrolled_face:
+    name: Enrolled Face
+    initial: false
+  simulate_motion_vhod:
+    name: "Simulate Motion (Glavni vhod)"
+    initial: false
+  simulate_motion_hodnik:
+    name: "Simulate Motion (Hodnik)"
+    initial: false
+  simulate_motion_klet:
+    name: "Simulate Motion (Klet)"
+    initial: false
+  simulate_sound_dvorisce:
+    name: "Simulate Sound (Dvorisče)"
+    initial: false
+
+  # ... tvoji obstoječi input_boolean-i
+  # configuration.yaml
+
+# … other config …
+
+input_select:
+  alarm_sensor:
+    name: Choose Sensor
+    options:
+      - binary_sensor.motion_detector_vhod
+      - binary_sensor.motion_detector_hodnik
+      - binary_sensor.motion_detector_klet
+    initial: binary_sensor.motion_detector_vhod
+
+shell_command:
+  send_custom_email: "python3 /config/python_scripts/gmail.py '{{ to }}' '{{ subject }}' '{{ body }}'"
+
+input_text:
+  user_email:
+    name: User Email
+    initial: user@example.com
+    max: 100
+    pattern: '^[^@]+@[^@]+\.[^@]+$'  # simple regex for email validation

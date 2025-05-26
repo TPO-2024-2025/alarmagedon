@@ -1,0 +1,87 @@
+@startuml RD_Sistem
+skinparam class {
+  BackgroundColor white
+  ArrowColor black
+  DefaultTextAlignment center
+}
+hide circle
+
+' Zaslonske maske
+
+class "ZM-NadzornaPlosca" as ZM_NadzornaPlosca <<boundary>> <<HA>>{
+  -okenceAlarmi
+  +gumbOdpriAlarm()
+}
+
+class "ZM-Alarm" as ZM_Alarm <<boundary>> <<HA>>{
+  -poljeID
+  -poljeLokacija
+  +gumbSpremeniStanje()
+}
+
+' Vmesniki
+
+class "K-NadzornaPlosca" as K_NadzornaPlosca <<controller>> <<HA>>{
+  -alarmi
+  -naloziAlarme()
+  +odpriAlarmZM()
+}
+
+class "K-Alarm" as K_Alarm <<controller>> <<HA>>{
+  -id
+  -lokacija
+  +spremeniStanje()
+  +zbrisiAlarm()
+  +sproziSimulacijoAlarma()
+}
+
+' Razredi
+
+class "R-HomeAssistant" as R_HomeAssistant <<entity>> <<HA>>{
+  -alarmi
+  +vrniAlarme()
+}
+
+class "R-Alarm" as R_Alarm <<entity>> <<HA>>{
+  -id
+  -lokacija
+  -stanje
+}
+
+' Povezave
+
+' NadzornaPlosca
+ZM_NadzornaPlosca <--> K_NadzornaPlosca
+K_NadzornaPlosca <--> R_HomeAssistant
+K_NadzornaPlosca <--> K_Alarm
+K_NadzornaPlosca --> ZM_Alarm
+
+' Alarm
+ZM_Alarm <--> K_Alarm
+K_Alarm <--> R_HomeAssistant
+
+' HomeAssistant
+R_HomeAssistant --> R_Alarm
+
+' Boundary classes (GREEN background)
+skinparam class {
+  BackgroundColor<<boundary>> #D5F5E3
+}
+
+' Controller classes (RED background)
+skinparam class {
+  BackgroundColor<<controller>> #FADBD8
+}
+
+skinparam class {
+  BorderColor<<HA>> #007ACC
+}
+
+legend right
+  |= Barva |= Opis |
+  | ZELENA | Ozadje razredov tipa boundary (uporabniški vmesnik) |
+  | RDEČA | Ozadje razredov tipa controller (logika/krmilniki) |
+  | BELA | Ozadje razredov tipa entity (podatkovni modeli) |
+  | MODRA | Rob razredov, ki so že implementirani ali delno implementirani v Home Assistant |
+endlegend
+@enduml

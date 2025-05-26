@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "minor_version": 2,
+  "key": "repairs.issue_registry",
+  "data": {
+    "issues": [
+      {
+        "created": "2025-05-22T11:06:07.660437+00:00",
+        "dismissed_version": "2025.5.2",
+        "domain": "automation",
+        "is_persistent": false,
+        "issue_id": "automation.reset_face_auth_after_10_minutes_validation_failed_schema"
+      },
+      {
+        "created": "2025-05-26T00:07:00.923352+00:00",
+        "dismissed_version": "2025.5.2",
+        "domain": "homeassistant",
+        "is_persistent": false,
+        "issue_id": "platform_integration_no_support_sensor_mqtt"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+views:
+  - title: Alarm
+    path: alarm
+    panel: false
+    cards:
+      - type: horizontal-stack
+        cards:
+
+          # ─────────── First conditional card ───────────
+          - type: conditional
+            conditions:
+              - entity: alarm_control_panel.dom
+                state: "triggered"
+            card:
+              type: custom:alarm-panel-cards
+              entity: alarm_control_panel.dom
+              use_timer: true
+
+          # ────────── ← Your SECOND code snippet goes right here ──────────
+          - type: conditional
+            conditions:
+              - entity: alarm_control_panel.dom
+                state_not: "triggered"
+            card:
+              type: custom:alarm-panel-cards
+              entity: alarm_control_panel.dom
+              use_timer: true
+              states:
+                - arm_home
+                - arm_away

@@ -1,0 +1,27 @@
+title: Varnostni sistem
+views:
+  - title: Alarm
+    path: alarm
+    panel: false
+    badges: []
+    cards:
+      # ── Your existing alarm‐panel card here ──
+      - type: custom:alarm-panel-cards
+        entity: alarm_control_panel.dom
+        use_timer: true
+        sensors:
+          - entity: binary_sensor.motion_detector
+            name: Gibanje
+            icon: mdi:run
+          # example extra sensors—you can duplicate these blocks
+          - entity: binary_sensor.front_door
+            name: Sprednja vrata
+            icon: mdi:door
+          - entity: binary_sensor.back_door
+            name: Zadnja vrata
+            icon: mdi:door
+
+      # ── New “Home Security” three‐button card ─ #
+
+
+

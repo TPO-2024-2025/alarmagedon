@@ -1,0 +1,53 @@
+@startuml DZ_RegistracijaUporabnika
+!theme plain
+hide footbox
+
+title Registracija uporabnika z obveznim skeniranjem obraza - preusmeritev na nadzorno ploščo
+
+actor Uporabnik
+
+Uporabnik -> "ZM-Registracija": vnos podatkov (uporabniško ime, geslo)
+activate "ZM-Registracija"
+
+"ZM-Registracija" -> "K-Prijava": registracija(uporabniskoIme, geslo)
+activate "K-Prijava"
+
+alt registracija uspešna
+  "K-Prijava" --> "ZM-SkenObraza": preusmeritev na obvezno obrazno registracijo
+  deactivate "K-Prijava"
+  activate "ZM-SkenObraza"
+  
+  "ZM-SkenObraza" -> "K-FaceAuth": začniSkenObraza()
+  activate "K-FaceAuth"
+  
+  "K-FaceAuth" -> "V-Kamera": zajemi obraz
+  activate "V-Kamera"
+  "V-Kamera" --> "K-FaceAuth": podatki skena obraza
+  deactivate "V-Kamera"
+  
+  "K-FaceAuth" -> "R-BrowserLocalStorage": shraniSkenObraza(podatkiSkena)
+  activate "R-BrowserLocalStorage"
+  "R-BrowserLocalStorage" --> "K-FaceAuth": potrditev shranjevanja
+  deactivate "R-BrowserLocalStorage"
+  
+  "K-FaceAuth" --> "ZM-SkenObraza": sken uspešen
+  deactivate "K-FaceAuth"
+  
+  "ZM-SkenObraza" -> "R-HomeAssistant": registracija novega uporabnika (uporabniskoIme, mail)
+  activate "R-HomeAssistant"
+  "R-HomeAssistant" --> "ZM-SkenObraza": potrditev registracije
+  deactivate "R-HomeAssistant"
+  
+  "ZM-SkenObraza" --> "ZM-Registracija": prikaz obvestila o uspešni registraciji
+  "ZM-Registracija" -> "ZM-NadzornaPlosca": preusmeritev na nadzorno ploščo
+  deactivate "ZM-Registracija"
+  deactivate "ZM-SkenObraza"
+
+else registracija neuspešna
+  "K-Prijava" --> "ZM-Registracija": vrniNapako()
+  "ZM-Registracija" --> "ZM-Registracija": prikazNapake()
+  deactivate "K-Prijava"
+  deactivate "ZM-Registracija"
+end
+
+@enduml

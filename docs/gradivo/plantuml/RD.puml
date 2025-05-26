@@ -1,0 +1,259 @@
+@startuml RD_Sistem
+skinparam class {
+  BackgroundColor white
+  ArrowColor black
+  DefaultTextAlignment center
+}
+hide circle
+
+' Zaslonske maske
+
+class "ZM-Prijava" as ZM_Prijava <<boundary>> <<HA>>{
+  -poljeUporabniskoIme
+  -poljeGeslo
+  -gumbPrijava
+  +prijava()
+  +prikazNapake()
+}
+
+class "ZM-Registracija" as ZM_Registracija  <<boundary>> <<HA>>{
+  -poljeUporabniskoIme
+  -poljeGeslo
+  -gumbRegistracija
+  +registracija()
+  +prikazNapake()
+}
+
+class "ZM-SkenObraza" as ZM_SkenObraza <<boundary>>{
+  -videoPregledSkena
+  +gumbDodajObraz()
+  +gumbPreveriObraz()
+}
+
+class "ZM-NadzornaPlosca" as ZM_NadzornaPlosca <<boundary>> <<HA>>{
+  -okenceSenzorji
+  -okenceAlarm
+  -okenceStanjeSistema
+  -okencePrikazDogodkov
+  -okenceSimulacijaSenzorja
+  -poljeMail
+}
+
+class "ZM-Senzor" as ZM_Senzor <<boundary>> <<HA>>{
+  -poljeID
+  -poljeVrsta
+  -poljeLokacija
+  -okenceDogodkiNaSenzorju
+  -okenceNastavitveZaAlarm
+}
+
+class "ZM-Alarm" as ZM_Alarm <<boundary>> <<HA>>{
+  -poljePin
+  +gumbSpremeniStanjeSistema()
+  +gumbDeaktivirajAlarm
+  +gumbClearPin()
+}
+
+class "ZM-Dogodek" as ZM_Dogodek <<boundary>> {
+  -poljeID
+  -poljeVrsta
+  -poljeCas
+}
+
+class "ZM-SimulacijaSenzorja" as ZM_SimulacijaSenzorja <<boundary>> {
+  -poljeID
+  -poljeNastavitevZaAlarm
+  +gumbAktivirajSenzor()
+  +gumbDodajSenzor()
+  +prikaziNapako()
+}
+
+' Vmesniki
+
+class "V-Kamera" as V_Kamera <<boundary>> {
+  +skenirajObraz()
+}
+
+' Kontrolerji
+
+class "K-Prijava" as K_Prijava <<controller>> <<HA>>{
+  -uporabniskoIme
+  -geslo
+  +preveriPodatke()
+  +prijaviUporabnika()
+  +shraniNovegaUporabnika()
+  +vrniID()
+  +vrniNapako()
+}
+
+
+class "K-FaceAuth" as K_FaceAuth <<controller>>{
+  +shraniSkenObraza()
+  +preveriSkenObraza()
+  +pribaviSkenObraza()
+  +vrniSkenObraza()
+}
+
+class "K-NadzornaPlosca" as K_NadzornaPlosca <<controller>> <<HA>>{
+  -stanjeSistema
+  -senzorji
+  -alarmi
+  -dogodki
+  -naloziDogodke()
+  -naloziSenzorje()
+  -naloziAlarme()
+  +spremeniStanjeSistema()
+  +odpriSenzorZM()
+  +odpriAlarmZM()
+  +odpriDogodekZM()
+  +dodajSenzor()
+  +dodajAlarm()
+  +shraniMail()
+}
+
+class "K-Senzor" as K_Senzor <<controller>> <<HA>>{
+  -id
+  -vrsta
+  -lokacija
+  +spremeniStanje()
+  +zbrisiSenzor()
+  +obdelujZaznave()
+}
+
+class "K-Alarm" as K_Alarm <<controller>> <<HA>>{
+  -id
+  -lokacija
+  +spremeniStanje()
+  +zbrisiAlarm()
+  +sproziSimulacijoAlarma()
+}
+
+class "K-Obvestilo" as K_Obvestilo <<controller>> {
+  -podatkiDogodka
+  -pribaviMailUporabnika()
+  +posljiObvestilo()
+}
+
+class "K-MQTT" as K_MQTT <<controller>> <<HA>>{
+  +aktivirajSenzor()
+  +vrniNapako()
+}
+
+' Razredi
+
+class "R-HomeAssistant" as R_HomeAssistant <<entity>> <<HA>>{
+  -senzorji
+  -alarmi
+  -stanjeSistema
+  -podatkiUporabnika
+  +dodajSenzor()
+  +dodajAlarm()
+  +spremeniStanjeSistema()
+  +vrniSenzorje()
+  +vrniAlarme()
+  +vrniStanjeSistema()
+  +vrniPodatkeUporabnika()
+  +shraniPodatkeUporabnika()
+}
+
+class "R-Dogodek" as R_Dogodek <<entity>> <<HA>> {
+  -id
+  -vrsta
+  -cas
+}
+
+
+class "R-Senzor" as R_Senzor <<entity>> <<HA>>{
+  -id
+  -vrsta
+  -lokacija
+  -stanje
+}
+
+class "R-Alarm" as R_Alarm <<entity>> <<HA>>{
+  -id
+  -lokacija
+  -stanje
+}
+
+class "R-Obvestilo" as R_Obvestilo <<entity>> <<HA>> {
+  -podatkiDogodka
+  -mailUporabnika
+}
+
+class "R-StanjeSistema" as R_StanjeSistema <<entity>> <<HA>>{
+  -stanje {izklopljen, uklopljen, doma}
+}
+
+class "R-BrowserLocalStorage" as R_BrowserLocalStorage <<entity>>{
+  -skenObraza
+}
+
+' Povezave
+
+' Prijava in Registracija
+ZM_Prijava -- K_Prijava
+ZM_Registracija -- K_Prijava
+K_Prijava -- R_HomeAssistant
+
+' NadzornaPlosca
+ZM_NadzornaPlosca -- K_NadzornaPlosca
+K_NadzornaPlosca -- R_HomeAssistant
+K_NadzornaPlosca -- K_Senzor
+K_NadzornaPlosca -- K_Alarm
+K_NadzornaPlosca --> ZM_Senzor
+K_NadzornaPlosca --> ZM_Alarm
+K_NadzornaPlosca --> ZM_Dogodek
+
+' Senzor
+ZM_Senzor -- K_Senzor
+K_Senzor -- R_HomeAssistant
+K_Senzor -- K_Alarm
+K_Senzor -- K_Obvestilo
+
+' Alarm
+ZM_Alarm -- K_Alarm
+K_Alarm -- R_HomeAssistant
+
+' HomeAssistant
+R_HomeAssistant -- K_MQTT
+R_HomeAssistant --> R_Senzor
+R_HomeAssistant --> R_Alarm
+R_HomeAssistant --> R_StanjeSistema
+R_HomeAssistant --> R_Dogodek
+
+' Obvestilo
+K_Obvestilo --> R_Obvestilo
+
+' MQTT
+K_MQTT -- ZM_SimulacijaSenzorja
+
+' FaceAuth
+K_Prijava --> ZM_SkenObraza
+ZM_SkenObraza -- K_FaceAuth
+K_FaceAuth --> R_BrowserLocalStorage
+K_FaceAuth -- V_Kamera
+K_FaceAuth -- R_HomeAssistant
+
+' Boundary classes (GREEN background)
+skinparam class {
+  BackgroundColor<<boundary>> #D5F5E3
+}
+
+' Controller classes (RED background)
+skinparam class {
+  BackgroundColor<<controller>> #FADBD8
+}
+
+skinparam class {
+  BorderColor<<HA>> #007ACC
+}
+
+legend right
+  |= Barva |= Opis |
+  | ZELENA | Ozadje razredov tipa boundary (uporabniški vmesnik) |
+  | RDEČA | Ozadje razredov tipa controller (logika/krmilniki) |
+  | BELA | Ozadje razredov tipa entity (podatkovni modeli) |
+  | MODRA | Rob razredov, ki so že implementirani ali delno implementirani v Home Assistant |
+endlegend
+@enduml

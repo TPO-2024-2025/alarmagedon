@@ -1,0 +1,102 @@
+@startuml RD_Sistem
+skinparam class {
+  BackgroundColor white
+  ArrowColor black
+  DefaultTextAlignment center
+}
+hide circle
+
+' Zaslonske maske
+
+class "ZM-Prijava" as ZM_Prijava <<boundary>> <<HA>>{
+  -poljeUporabniskoIme
+  -poljeGeslo
+  -gumbSkenObraza
+  -gumbPrijava
+  +prijava()
+  +skenObraza()
+  +prikazNapake()
+}
+
+' Vmesniki
+
+class "V-Kamera" as V_Kamera <<boundary>> {
+  +skenirajObraz()
+}
+
+' Kontrolerji
+
+class "K-Prijava" as K_Prijava <<controller>> <<HA>>{
+  -uporabniskoIme
+  -geslo
+  +preveriPodatke()
+  +preveriSkenObraza()
+  +prijaviUporabnika()
+  +shraniNovegaUporabnika()
+  +vrniID()
+  +vrniNapako()
+}
+
+class "K-Kamera" as K_Kamera <<controller>>{
+  +pribaviSkenObraza()
+  +vrniSkenObraza()
+}
+
+' Razredi
+
+class "R-BazaPodatkov" as R_BazaPodatkov <<entity>> {
+  -podatki
+  +dodajDogodek()
+  +dodajSkenObraza()
+  +dodajMail()
+  +vrniSkenObraza()
+  +vrniMail()
+  +vrniDogodke()
+}
+
+class "R-HomeAssistant" as R_HomeAssistant <<entity>> <<HA>>{
+  -senzorji
+  -alarmi
+  -stanjeSistema
+  -podatkiUporabnika
+  +dodajSenzor()
+  +dodajAlarm()
+  +spremeniStanjeSistema()
+  +vrniSenzorje()
+  +vrniAlarme()
+  +vrniStanjeSistema()
+  +vrniPodatkeUporabnika()
+  +shraniPodatkeUporabnika()
+}
+' Povezave
+
+' Prijava in Registracija
+ZM_Prijava <--> K_Prijava
+ZM_Registracija <--> K_Prijava
+K_Prijava --> R_BazaPodatkov
+K_Prijava <--> K_Kamera
+K_Kamera <--> V_Kamera
+K_Prijava <--> R_HomeAssistant
+
+' Boundary classes (GREEN background)
+skinparam class {
+  BackgroundColor<<boundary>> #D5F5E3
+}
+
+' Controller classes (RED background)
+skinparam class {
+  BackgroundColor<<controller>> #FADBD8
+}
+
+skinparam class {
+  BorderColor<<HA>> #007ACC
+}
+
+legend right
+  |= Barva |= Opis |
+  | ZELENA | Ozadje razredov tipa boundary (uporabniški vmesnik) |
+  | RDEČA | Ozadje razredov tipa controller (logika/krmilniki) |
+  | BELA | Ozadje razredov tipa entity (podatkovni modeli) |
+  | MODRA | Rob razredov, ki so že implementirani ali delno implementirani v Home Assistant |
+endlegend
+@enduml

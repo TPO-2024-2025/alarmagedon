@@ -1,0 +1,81 @@
+@startuml DZ_SpremijanjeNastavitvNacinaVarovanja
+!theme plain
+hide footbox
+
+title Spreminjanje nastavitev načina varovanja
+
+actor Uporabnik
+
+Uporabnik -> "ZM-NadzornaPlosca": izbere možnost "sprememba načina varovanja"
+activate "ZM-NadzornaPlosca"
+"ZM-NadzornaPlosca" --> "ZM-NadzornaPlosca": prikaz gumbov za izbiro načina varovanja(odsotnost, nočni način, prisotnost)
+
+Uporabnik -> "ZM-NadzornaPlosca": izbira načina varovanja (odsotnost, nočni način, prisotnost)
+
+
+"ZM-NadzornaPlosca" -> "K-NadzornaPlosca": gumbIzbiraStanjaSistema(izbranNacin)
+activate "K-NadzornaPlosca"
+
+"K-NadzornaPlosca" --> "K-NadzornaPlosca": spremeniStanjeSistema(izbranNacin)
+
+"K-NadzornaPlosca" -> "R-HomeAssistant": spremeniStanjeSistema(izbranNacin)
+activate "R-HomeAssistant"
+
+"R-HomeAssistant" --> "R-HomeAssistant": posodobi stanje sistema
+
+alt način "odsotnost"
+  "R-HomeAssistant" -> "R-Senzor": aktiviraj vse senzorje
+  activate "R-Senzor"
+  "R-Senzor" --> "R-HomeAssistant": potrditev
+  deactivate "R-Senzor"
+  
+  "R-HomeAssistant" -> "R-Alarm": pripravi vse alarme
+  activate "R-Alarm"
+  "R-Alarm" --> "R-HomeAssistant": potrditev
+  deactivate "R-Alarm"
+  
+else način "nočni način"
+  "R-HomeAssistant" -> "R-Senzor": aktiviraj samo senzorje v izbranih prostorih
+  activate "R-Senzor"
+  "R-Senzor" --> "R-HomeAssistant": potrditev
+  deactivate "R-Senzor"
+  
+  "R-HomeAssistant" -> "R-Alarm": pripravi izbrane alarme
+  activate "R-Alarm"
+  "R-Alarm" --> "R-HomeAssistant": potrditev
+  deactivate "R-Alarm"
+  
+else način "prisotnost"
+  "R-HomeAssistant" -> "R-Senzor": aktiviraj samo ključne senzorje
+  activate "R-Senzor"
+  "R-Senzor" --> "R-HomeAssistant": potrditev
+  deactivate "R-Senzor"
+  
+  "R-HomeAssistant" -> "R-Alarm": pripravi samo tihe alarme
+  activate "R-Alarm"
+  "R-Alarm" --> "R-HomeAssistant": potrditev
+  deactivate "R-Alarm"
+end
+
+"R-HomeAssistant" --> "K-NadzornaPlosca": potrditev spremembe
+deactivate "R-HomeAssistant"
+
+"K-NadzornaPlosca" -> "R-BazaPodatkov": dodajDogodek("sprememba načina na " + izbranNacin)
+activate "R-BazaPodatkov"
+
+"R-BazaPodatkov" -> "R-Dogodek": ustvari nov dogodek
+activate "R-Dogodek"
+"R-Dogodek" --> "R-Dogodek": nastavi id, vrsto, čas
+"R-Dogodek" --> "R-BazaPodatkov": vrni dogodek
+deactivate "R-Dogodek"
+
+"R-BazaPodatkov" --> "K-NadzornaPlosca": potrditev
+deactivate "R-BazaPodatkov"
+
+"K-NadzornaPlosca" --> "ZM-NadzornaPlosca": posodobi stanje sistema
+"ZM-NadzornaPlosca" --> "ZM-NadzornaPlosca": prikaz obvestila o spremenjenem načinu varovanja
+
+deactivate "K-NadzornaPlosca"
+deactivate "ZM-NadzornaPlosca"
+
+@enduml

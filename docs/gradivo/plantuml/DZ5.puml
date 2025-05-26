@@ -1,0 +1,51 @@
+@startuml DZ_PregledZgodovineEventov
+!theme plain
+hide footbox
+
+title Pregled zgodovine dogodkov
+
+actor Uporabnik
+
+Uporabnik -> "ZM-NadzornaPlosca": izbere možnost "pregled zgodovine dogodkov"
+activate "ZM-NadzornaPlosca"
+
+"ZM-NadzornaPlosca" -> "K-NadzornaPlosca": naloži dogodke
+activate "K-NadzornaPlosca"
+
+"K-NadzornaPlosca" -> "R-BazaPodatkov": vrniDogodke()
+activate "R-BazaPodatkov"
+
+"R-BazaPodatkov" --> "K-NadzornaPlosca": seznam dogodkov
+deactivate "R-BazaPodatkov"
+
+"K-NadzornaPlosca" --> "ZM-NadzornaPlosca": prikaži dogodke
+deactivate "K-NadzornaPlosca"
+
+"ZM-NadzornaPlosca" --> "ZM-NadzornaPlosca": prikaz seznama dogodkov
+
+Uporabnik -> "ZM-NadzornaPlosca": izbere dogodek
+"ZM-NadzornaPlosca" -> "K-NadzornaPlosca": odpriDogodekZM(idDogodka)
+activate "K-NadzornaPlosca"
+
+"K-NadzornaPlosca" -> "R-BazaPodatkov": pridobi podrobnosti dogodka
+activate "R-BazaPodatkov"
+"R-BazaPodatkov" --> "K-NadzornaPlosca": podrobnosti dogodka
+deactivate "R-BazaPodatkov"
+
+"K-NadzornaPlosca" -> "ZM-Dogodek": prikaži podrobnosti dogodka
+activate "ZM-Dogodek"
+
+alt če je zvočni dogodek
+  "ZM-Dogodek" -> "ZM-DogodekZvok": ustvari zvočni dogodek
+  activate "ZM-DogodekZvok"
+  "ZM-DogodekZvok" --> "ZM-Dogodek": prikaz z dodatnimi opcijami
+  deactivate "ZM-DogodekZvok"
+end
+
+"ZM-Dogodek" --> Uporabnik: prikaz podrobnosti dogodka
+
+deactivate "ZM-Dogodek"
+deactivate "K-NadzornaPlosca"
+deactivate "ZM-NadzornaPlosca"
+
+@enduml

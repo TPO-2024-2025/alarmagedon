@@ -1,0 +1,186 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "homeassistant.exposed_entities",
+  "data": {
+    "assistants": {},
+    "exposed_entities": {
+      "conversation.home_assistant": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "zone.home": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "sun.sun": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "alarm_control_panel.dom": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.reset_face_auth_after_10_minutes": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.motion_detector": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.trigger_alarm_on_motion": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.send_email_when_alarm_triggered": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.alarm_email_notification": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.alarm_triggered_send_email": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.motion_detector_hodnik": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.motion_detector_klet": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.trigger_alarm_on_motion_hodnik": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.trigger_alarm_on_motion_klet": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.trigger_alarm_on_motion_glavni_vhod": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.motion_detector_vhod": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.sound_detector_dvorisce": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.trigger_alarm_on_sound_dvorisce": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "automation.alarm_triggered_send_notification": {
+        "assistants": {
+          "conversation": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.test_sensor": {
+        "assistants": {
+          "cloud.alexa": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.sensor12": {
+        "assistants": {
+          "cloud.alexa": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.sensor2": {
+        "assistants": {
+          "cloud.alexa": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      },
+      "binary_sensor.sensor21": {
+        "assistants": {
+          "cloud.alexa": {
+            "should_expose": false
+          },
+          "cloud.google_assistant": {
+            "should_expose": false
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "core.restore_state",
+  "data": [
+    {
+      "state": {"entity_id":"conversation.home_assistant","state":"unknown","attributes":{"friendly_name":"Home Assistant","supported_features":1},"last_changed":"2025-05-26T00:48:37.696333+00:00","last_reported":"2025-05-26T00:48:37.696333+00:00","last_updated":"2025-05-26T00:48:37.696333+00:00","context":{"id":"01JW5107A06WEGB9ZKEVAZZYY8","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"stt.home_assistant_cloud","state":"unknown","attributes":{"friendly_name":"Home Assistant Cloud"},"last_changed":"2025-05-26T00:48:38.393407+00:00","last_reported":"2025-05-26T00:48:38.393407+00:00","last_updated":"2025-05-26T00:48:38.393407+00:00","context":{"id":"01JW5107ZSKX5FK5905HAGTSQ4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"tts.home_assistant_cloud","state":"unknown","attributes":{"friendly_name":"Home Assistant Cloud"},"last_changed":"2025-05-26T00:48:38.393686+00:00","last_reported":"2025-05-26T00:48:38.393686+00:00","last_updated":"2025-05-26T00:48:38.393686+00:00","context":{"id":"01JW5107ZS4V8NDR1VVRQCTFA5","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.face_authenticated","state":"on","attributes":{"editable":false,"friendly_name":"Face Authenticated"},"last_changed":"2025-05-26T00:48:41.447354+00:00","last_reported":"2025-05-26T00:48:41.447354+00:00","last_updated":"2025-05-26T00:48:41.447354+00:00","context":{"id":"01JW510AZ69GP7Z8SVZS5XKNH5","parent_id":null,"user_id":"507f3ca8761d439c94f9728831e482c3"}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.enrolled_face","state":"on","attributes":{"editable":false,"friendly_name":"Enrolled Face"},"last_changed":"2025-05-26T00:48:41.359930+00:00","last_reported":"2025-05-26T00:48:41.359930+00:00","last_updated":"2025-05-26T00:48:41.359930+00:00","context":{"id":"01JW510AWF066G093WXEHN7MBQ","parent_id":null,"user_id":"507f3ca8761d439c94f9728831e482c3"}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.simulate_motion_vhod","state":"off","attributes":{"editable":false,"friendly_name":"Simulate Motion (Glavni vhod)"},"last_changed":"2025-05-26T00:48:38.456140+00:00","last_reported":"2025-05-26T00:48:38.456140+00:00","last_updated":"2025-05-26T00:48:38.456140+00:00","context":{"id":"01JW51081R63JB9TNQVJW37HQ2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.simulate_motion_hodnik","state":"off","attributes":{"editable":false,"friendly_name":"Simulate Motion (Hodnik)"},"last_changed":"2025-05-26T00:48:38.456208+00:00","last_reported":"2025-05-26T00:48:38.456208+00:00","last_updated":"2025-05-26T00:48:38.456208+00:00","context":{"id":"01JW51081RA370WNK3T387DWF2","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.simulate_motion_klet","state":"off","attributes":{"editable":false,"friendly_name":"Simulate Motion (Klet)"},"last_changed":"2025-05-26T00:48:38.456269+00:00","last_reported":"2025-05-26T00:48:38.456269+00:00","last_updated":"2025-05-26T00:48:38.456269+00:00","context":{"id":"01JW51081R6F02A14DR0RHFWTV","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.simulate_sound_dvorisce","state":"off","attributes":{"editable":false,"friendly_name":"Simulate Sound (Dvorisče)"},"last_changed":"2025-05-26T00:48:38.456354+00:00","last_reported":"2025-05-26T00:48:38.456354+00:00","last_updated":"2025-05-26T00:48:38.456354+00:00","context":{"id":"01JW51081RRG6JD9MHRYW5SVHP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_select.alarm_sensor","state":"binary_sensor.motion_detector_vhod","attributes":{"options":["binary_sensor.motion_detector_vhod","binary_sensor.motion_detector_hodnik","binary_sensor.motion_detector_klet"],"editable":false,"friendly_name":"Choose Sensor"},"last_changed":"2025-05-26T00:48:38.456501+00:00","last_reported":"2025-05-26T00:48:38.456501+00:00","last_updated":"2025-05-26T00:48:38.456501+00:00","context":{"id":"01JW51081REXS6ZWQ9X7PWD569","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"person.ena","state":"unknown","attributes":{"editable":true,"id":"ena","device_trackers":[],"user_id":"51939b63db4e4469b455ef98315ebf51","friendly_name":"ena"},"last_changed":"2025-05-26T00:48:38.456675+00:00","last_reported":"2025-05-26T00:48:40.098268+00:00","last_updated":"2025-05-26T00:48:40.098268+00:00","context":{"id":"01JW5109N24B8SWXNRJN7KPQCN","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"person.bla","state":"unknown","attributes":{"editable":true,"id":"bla","device_trackers":[],"friendly_name":"Bla"},"last_changed":"2025-05-26T00:48:38.456820+00:00","last_reported":"2025-05-26T00:48:40.098331+00:00","last_updated":"2025-05-26T00:48:40.098331+00:00","context":{"id":"01JW5109N22K94QERV2AYTR2JP","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.motion_detector_vhod","state":"off","attributes":{"alarm_mode":"both","icon":"mdi:motion-sensor","friendly_name":"Motion Sensor (Glavni vhod)"},"last_changed":"2025-05-26T00:48:40.098775+00:00","last_reported":"2025-05-26T00:48:40.098775+00:00","last_updated":"2025-05-26T00:48:40.098775+00:00","context":{"id":"01JW5109N2045VJZ0P79V2YPF4","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.motion_detector_hodnik","state":"off","attributes":{"alarm_mode":"armed_away","icon":"mdi:motion-sensor","friendly_name":"Motion Sensor (Hodnik)"},"last_changed":"2025-05-26T00:48:40.098975+00:00","last_reported":"2025-05-26T00:48:40.098975+00:00","last_updated":"2025-05-26T00:48:40.098975+00:00","context":{"id":"01JW5109N2JA2BF9VYAFHZHSHF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.motion_detector_klet","state":"off","attributes":{"alarm_mode":"armed_home","icon":"mdi:motion-sensor","friendly_name":"Motion Sensor (Klet)"},"last_changed":"2025-05-26T00:48:40.099136+00:00","last_reported":"2025-05-26T00:48:40.099136+00:00","last_updated":"2025-05-26T00:48:40.099136+00:00","context":{"id":"01JW5109N3ZNSQ6QV1GWWZ41K9","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.sound_detector_dvorisce","state":"off","attributes":{"alarm_mode":"both","icon":"mdi:volume-high","friendly_name":"Sound Sensor (Dvorisče)"},"last_changed":"2025-05-26T00:48:40.099278+00:00","last_reported":"2025-05-26T00:48:40.099278+00:00","last_updated":"2025-05-26T00:48:40.099278+00:00","context":{"id":"01JW5109N3Z7B5X8KYP0Z6CEN0","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"alarm_control_panel.dom","state":"disarmed","attributes":{"code_format":"number","changed_by":null,"code_arm_required":false,"previous_state":null,"next_state":null,"friendly_name":"Dom","supported_features":63},"last_changed":"2025-05-26T00:48:39.506347+00:00","last_reported":"2025-05-26T00:48:39.506347+00:00","last_updated":"2025-05-26T00:48:39.506347+00:00","context":{"id":"01JW51092J2042FTCDJ4GGSXWJ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"input_text.user_email","state":"user@example.com","attributes":{"editable":false,"min":0,"max":100,"pattern":"^[^@]+@[^@]+\\.[^@]+$","mode":"text","friendly_name":"User Email"},"last_changed":"2025-05-26T00:48:39.694687+00:00","last_reported":"2025-05-26T00:48:39.694687+00:00","last_updated":"2025-05-26T00:48:39.694687+00:00","context":{"id":"01JW51098E1EWM6A289CQSNS0S","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.reset_face_auth_after_10_minutes","state":"on","attributes":{"last_triggered":"2025-05-26T00:22:58.604116+00:00","mode":"single","current":0,"friendly_name":"Reset Face Auth After 10 Minutes"},"last_changed":"2025-05-26T00:48:39.729572+00:00","last_reported":"2025-05-26T00:48:39.729572+00:00","last_updated":"2025-05-26T00:48:39.729572+00:00","context":{"id":"01JW51099HHF6EF8E9P5QXFW0T","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.trigger_alarm_on_motion_glavni_vhod","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Trigger Alarm on Motion (Glavni vhod)"},"last_changed":"2025-05-26T00:48:39.729720+00:00","last_reported":"2025-05-26T00:48:39.729720+00:00","last_updated":"2025-05-26T00:48:39.729720+00:00","context":{"id":"01JW51099H3N95ZS99BDB9C92X","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.trigger_alarm_on_motion_hodnik","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Trigger Alarm on Motion (Hodnik)"},"last_changed":"2025-05-26T00:48:39.729796+00:00","last_reported":"2025-05-26T00:48:39.729796+00:00","last_updated":"2025-05-26T00:48:39.729796+00:00","context":{"id":"01JW51099HSAMQQFY3CPHM0MQM","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.trigger_alarm_on_motion_klet","state":"on","attributes":{"last_triggered":null,"mode":"single","current":0,"friendly_name":"Trigger Alarm on Motion (Klet)"},"last_changed":"2025-05-26T00:48:39.729874+00:00","last_reported":"2025-05-26T00:48:39.729874+00:00","last_updated":"2025-05-26T00:48:39.729874+00:00","context":{"id":"01JW51099HD1SZ6MQ1PXFFF5AF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.trigger_alarm_on_sound_dvorisce","state":"on","attributes":{"last_triggered":"2025-05-25T09:07:23.077238+00:00","mode":"single","current":0,"friendly_name":"Trigger Alarm on Sound (Dvorisce)"},"last_changed":"2025-05-26T00:48:39.729949+00:00","last_reported":"2025-05-26T00:48:39.729949+00:00","last_updated":"2025-05-26T00:48:39.729949+00:00","context":{"id":"01JW51099HBX6KG4KQTN78N7FA","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.alarm_triggered_send_notification","state":"on","attributes":{"last_triggered":"2025-05-25T09:07:26.079763+00:00","mode":"single","current":0,"friendly_name":"Alarm Triggered Send Notification"},"last_changed":"2025-05-26T00:48:39.730014+00:00","last_reported":"2025-05-26T00:48:39.730014+00:00","last_updated":"2025-05-26T00:48:39.730014+00:00","context":{"id":"01JW51099JWZBZHYA7R31EG29Z","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"device_tracker.crt_nx1","state":"not_home","attributes":{"source_type":"gps","latitude":46.0541694,"longitude":14.5522997,"gps_accuracy":17,"altitude":336.0,"course":0,"speed":0,"vertical_accuracy":2,"friendly_name":"CRT-NX1"},"last_changed":"2025-05-26T00:48:40.077219+00:00","last_reported":"2025-05-26T00:48:40.077219+00:00","last_updated":"2025-05-26T00:48:40.077219+00:00","context":{"id":"01JW5109MDYC6XY0GTWW120F0J","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.crt_nx1_battery_level","state":"60","attributes":{"state_class":"measurement","unit_of_measurement":"%","device_class":"battery","icon":"mdi:battery-60","friendly_name":"CRT-NX1 Battery level"},"last_changed":"2025-05-26T00:48:40.077624+00:00","last_reported":"2025-05-26T00:48:40.077624+00:00","last_updated":"2025-05-26T00:48:40.077624+00:00","context":{"id":"01JW5109MDBPXM3KGWFWHWFA70","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": 60,
+        "native_unit_of_measurement": "%"
+      },
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.crt_nx1_battery_state","state":"discharging","attributes":{"options":["charging","discharging","full","not_charging"],"device_class":"enum","icon":"mdi:battery-minus","friendly_name":"CRT-NX1 Battery state"},"last_changed":"2025-05-26T00:48:40.077735+00:00","last_reported":"2025-05-26T00:48:40.077735+00:00","last_updated":"2025-05-26T00:48:40.077735+00:00","context":{"id":"01JW5109MD642M47FNTBS65NDF","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "discharging",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"sensor.crt_nx1_charger_type","state":"none","attributes":{"options":["ac","usb","wireless","dock","none"],"device_class":"enum","icon":"mdi:battery","friendly_name":"CRT-NX1 Charger type"},"last_changed":"2025-05-26T00:48:40.077830+00:00","last_reported":"2025-05-26T00:48:40.077830+00:00","last_updated":"2025-05-26T00:48:40.077830+00:00","context":{"id":"01JW5109MDB6QN48J8QEQ0FDFJ","parent_id":null,"user_id":null}},
+      "extra_data": {
+        "native_value": "none",
+        "native_unit_of_measurement": null
+      },
+      "last_seen": "2025-05-26T00:48:56.646067+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.test_sensor","state":"unknown","attributes":{"device_class":"motion","friendly_name":"Test Sensor"},"last_changed":"2025-05-26T00:39:09.037818+00:00","last_reported":"2025-05-26T00:39:09.037942+00:00","last_updated":"2025-05-26T00:39:09.037818+00:00","context":{"id":"01JW50EVZDAPK3JEE0ZP17J8WF","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:42:14.588685+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.sensor1","state":"on","attributes":{"device_class":"motion","friendly_name":"sensor1"},"last_changed":"2025-05-26T00:39:16.589274+00:00","last_reported":"2025-05-26T00:39:16.589274+00:00","last_updated":"2025-05-26T00:39:16.589274+00:00","context":{"id":"01JW50F3BD0AFBBP6EZQJ3PZFK","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:42:14.588685+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.sensor2","state":"off","attributes":{"device_class":"motion","friendly_name":"sensor2"},"last_changed":"2025-05-26T00:41:26.891160+00:00","last_reported":"2025-05-26T00:41:26.891160+00:00","last_updated":"2025-05-26T00:41:26.891160+00:00","context":{"id":"01JW50K2KBZ6XY17W5Z94T0S98","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:42:14.588685+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.alarm_triggered_send_email","state":"on","attributes":{"last_triggered":"2025-05-25T08:48:00.056740+00:00","mode":"single","current":0,"friendly_name":"Alarm Triggered Send Email"},"last_changed":"2025-05-25T09:01:42.102799+00:00","last_reported":"2025-05-25T09:01:42.102799+00:00","last_updated":"2025-05-25T09:01:42.102799+00:00","context":{"id":"01JW3ATBAP3EEFESDR5V21DDQQ","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-25T09:02:53.799532+00:00"
+    },
+    {
+      "state": {"entity_id":"input_boolean.simulate_motion","state":"off","attributes":{"editable":false,"friendly_name":"Simulate Motion"},"last_changed":"2025-05-25T08:51:52.315686+00:00","last_reported":"2025-05-25T08:51:52.315686+00:00","last_updated":"2025-05-25T08:51:52.315686+00:00","context":{"id":"01JW3A8BBV4KHBRZP18AM7EM6X","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-25T08:57:05.926897+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.motion_detector","state":"off","attributes":{"alarm_mode":"armed_away","icon":"mdi:motion-sensor","friendly_name":"Motion Sensor"},"last_changed":"2025-05-25T08:51:53.964508+00:00","last_reported":"2025-05-25T08:51:53.964508+00:00","last_updated":"2025-05-25T08:51:53.964508+00:00","context":{"id":"01JW3A8CZCMGQCF84FK2K5SH0J","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-25T08:57:05.926897+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.trigger_alarm_on_motion","state":"on","attributes":{"last_triggered":"2025-05-25T08:47:57.052142+00:00","mode":"single","current":0,"friendly_name":"Trigger Alarm on Motion"},"last_changed":"2025-05-25T08:51:53.958414+00:00","last_reported":"2025-05-25T08:51:53.958414+00:00","last_updated":"2025-05-25T08:51:53.958414+00:00","context":{"id":"01JW3A8CZ6FNVJ3GWB7VPBHAD1","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-25T08:57:05.926897+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.alarm_email_notification","state":"on","attributes":{"last_triggered":"2025-05-24T17:28:30.044461+00:00","mode":"single","current":0,"friendly_name":"Alarm Email Notification"},"last_changed":"2025-05-24T17:27:50.089830+00:00","last_reported":"2025-05-24T17:28:30.077003+00:00","last_updated":"2025-05-24T17:28:30.077003+00:00","context":{"id":"01JW1NDKJWYCH9Q332YV4B6T96","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-24T17:32:26.091521+00:00"
+    },
+    {
+      "state": {"entity_id":"script.send_alarm_email","state":"off","attributes":{"last_triggered":"2025-05-24T17:20:33.848959+00:00","mode":"single","current":0,"friendly_name":"Send Alarm Email"},"last_changed":"2025-05-24T17:20:35.516771+00:00","last_reported":"2025-05-24T17:20:35.516771+00:00","last_updated":"2025-05-24T17:20:35.516771+00:00","context":{"id":"01JW1MZ2HRBDFSQPYWZ2RKCJGE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-24T17:27:30.419382+00:00"
+    },
+    {
+      "state": {"entity_id":"input_text.face_descriptor","state":"unknown","attributes":{"editable":false,"min":0,"max":2048,"pattern":null,"mode":"text","friendly_name":"Face Descriptor"},"last_changed":"2025-05-24T17:04:05.644024+00:00","last_reported":"2025-05-24T17:04:05.644024+00:00","last_updated":"2025-05-24T17:04:05.644024+00:00","context":{"id":"01JW1M0XGCMDSKX5RPGVW4RZ9V","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-24T17:16:33.180645+00:00"
+    },
+    {
+      "state": {"entity_id":"automation.send_email_when_alarm_triggered","state":"on","attributes":{"last_triggered":"2025-05-24T17:04:23.360333+00:00","mode":"single","current":0,"friendly_name":"Send Email When Alarm Triggered"},"last_changed":"2025-05-24T17:04:06.793669+00:00","last_reported":"2025-05-24T17:04:24.649513+00:00","last_updated":"2025-05-24T17:04:24.649513+00:00","context":{"id":"01JW1M1ESZWRHY3VK9K7YP79WG","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-24T17:16:33.195560+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.sensor12","state":"on","attributes":{"device_class":"motion","friendly_name":"sensor12"},"last_changed":"2025-05-26T00:39:33.428548+00:00","last_reported":"2025-05-26T00:39:33.428548+00:00","last_updated":"2025-05-26T00:39:33.428548+00:00","context":{"id":"01JW50FKSMPG6Z20Z34QZYP19Z","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:39:34.692664+00:00"
+    },
+    {
+      "state": {"entity_id":"binary_sensor.sensor21","state":"on","attributes":{"device_class":"sound","friendly_name":"sensor21"},"last_changed":"2025-05-26T00:41:54.381224+00:00","last_reported":"2025-05-26T00:41:54.381224+00:00","last_updated":"2025-05-26T00:41:54.381224+00:00","context":{"id":"01JW50KXEDD1T7MRW1H5BJSJXE","parent_id":null,"user_id":null}},
+      "extra_data": null,
+      "last_seen": "2025-05-26T00:41:57.009009+00:00"
+    }
+  ]
+}

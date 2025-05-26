@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "minor_version": 9,
+  "key": "core.device_registry",
+  "data": {
+    "devices": [
+      {"area_id":null,"config_entries":["01JVY721XYR8KP6VXAZEJFNXEE"],"config_entries_subentries":{"01JVY721XYR8KP6VXAZEJFNXEE":[null]},"configuration_url":"homeassistant://config/backup","connections":[],"created_at":"2025-05-22T10:24:49.869044+00:00","disabled_by":null,"entry_type":"service","hw_version":null,"id":"75aa26de99643c8f56ee534eee749cac","identifiers":[["backup","backup_manager"]],"labels":[],"manufacturer":"Home Assistant","model":"Home Assistant Backup","model_id":null,"modified_at":"2025-05-23T09:19:58.148502+00:00","name_by_user":null,"name":"Backup","primary_config_entry":"01JVY721XYR8KP6VXAZEJFNXEE","serial_number":null,"sw_version":"2025.5.2","via_device_id":null},
+      {"area_id":null,"config_entries":["01JVY720ZDSXR3B6Y80CMKB3Y2"],"config_entries_subentries":{"01JVY720ZDSXR3B6Y80CMKB3Y2":[null]},"configuration_url":null,"connections":[],"created_at":"2025-05-23T09:19:47.185139+00:00","disabled_by":null,"entry_type":"service","hw_version":null,"id":"dd64444307a5f67a57955d48cceec6ed","identifiers":[["sun","01JVY720ZDSXR3B6Y80CMKB3Y2"]],"labels":[],"manufacturer":null,"model":null,"model_id":null,"modified_at":"2025-05-23T09:19:47.185172+00:00","name_by_user":null,"name":"Sun","primary_config_entry":"01JVY720ZDSXR3B6Y80CMKB3Y2","serial_number":null,"sw_version":null,"via_device_id":null},
+      {"area_id":null,"config_entries":["01JW39BMWS8H1Z4QRTE8WVMGB7"],"config_entries_subentries":{"01JW39BMWS8H1Z4QRTE8WVMGB7":[null]},"configuration_url":null,"connections":[],"created_at":"2025-05-25T08:36:11.801214+00:00","disabled_by":null,"entry_type":null,"hw_version":null,"id":"067fcba06941caa927c1f262972f352d","identifiers":[["mobile_app","71ecd85ed142ec42"]],"labels":[],"manufacturer":"HONOR","model":"CRT-NX1","model_id":null,"modified_at":"2025-05-25T08:36:11.801239+00:00","name_by_user":null,"name":"CRT-NX1","primary_config_entry":"01JW39BMWS8H1Z4QRTE8WVMGB7","serial_number":null,"sw_version":"34","via_device_id":null}
+    ],
+    "deleted_devices": [
+      {"config_entries":["01JR5SY0T9SM8NEM4F4PTFPDYW"],"config_entries_subentries":{"01JR5SY0T9SM8NEM4F4PTFPDYW":[null]},"connections":[],"created_at":"2025-05-22T10:24:50.376620+00:00","identifiers":[["sun","01JR5SY0T9SM8NEM4F4PTFPDYW"]],"id":"4a2f99cc630661b2058824512db96020","orphaned_timestamp":null,"modified_at":"2025-05-23T09:19:58.148879+00:00"}
+    ]
+  }
+}

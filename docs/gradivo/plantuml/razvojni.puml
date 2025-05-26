@@ -1,0 +1,68 @@
+@startuml
+skinparam componentStyle uml2
+skinparam rectangle {
+  BackgroundColor #F5F9FF
+  BorderColor #A3C2FF
+}
+skinparam interface {
+  BackgroundColor #FFFFFF
+  BorderColor #A3C2FF
+}
+
+package "Uporabniški vmesnik (Frontend)" <<subsystem>> {
+  [Registracija (mobilna aplikacija)] <<component>>
+  [Avtentikacija (mobilna aplikacija)] <<component>>
+  [Spletna aplikacija] <<component>>
+}
+
+package "Poslovna logika (Backend)" <<subsystem>> {
+  [Upravljanje uporabnikov] <<component>>
+  [Nadzor alarma] <<component>>
+  [Obdelava senzorjev] <<component>>
+  [Prepoznava obraza] <<component>>
+}
+
+package "Integracije" <<subsystem>> {
+  [Senzorji gibanja in zvoka] <<component>>
+  [Home Assistant API] <<component>>
+}
+
+' Definicije vmesnikov
+interface "Novi uporabnik" as NoviUporabnik
+interface "Obstoječi uporabnik" as ObstojeciUporabnik
+interface "Administrator" as Administrator
+
+interface "Uporaba aplikacije" as UporabaAplikacije
+interface "Vmesnik za bazo podatkov" as DBVmesnik
+interface "Home Assistant vmesnik" as HAVmesnik
+interface "Vmesnik za senzorje" as SenzorVmesnik
+
+' Povezave uporabnikov na aplikacije
+NoviUporabnik --> [Registracija (mobilna aplikacija)]
+ObstojeciUporabnik --> [Avtentikacija (mobilna aplikacija)]
+Administrator --> [Spletna aplikacija]
+
+' Registracija in Avtentikacija gresta v vmesnik "Uporaba aplikacije"
+[Registracija (mobilna aplikacija)] --> UporabaAplikacije
+[Avtentikacija (mobilna aplikacija)] --> UporabaAplikacije
+
+' Povezave iz "Uporaba aplikacije" naprej
+UporabaAplikacije --> [Upravljanje uporabnikov]
+
+' Povezave iz "Spletna aplikacija" direktno
+[Spletna aplikacija] --> [Upravljanje uporabnikov]
+[Spletna aplikacija] --> [Nadzor alarma]
+[Spletna aplikacija] --> [Obdelava senzorjev]
+[Spletna aplikacija] --> [Prepoznava obraza]
+
+' Povezave poslovne logike na bazo in integracije
+[Upravljanje uporabnikov] --> DBVmesnik
+[Prepoznava obraza] --> DBVmesnik
+[Nadzor alarma] --> HAVmesnik
+[Obdelava senzorjev] --> HAVmesnik
+
+' Povezave do integracij
+SenzorVmesnik --> [Senzorji gibanja in zvoka]
+HAVmesnik --> [Home Assistant API]
+[Senzorji gibanja in zvoka] --> [Home Assistant API]
+@enduml

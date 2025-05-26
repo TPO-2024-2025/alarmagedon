@@ -1,0 +1,39 @@
+@startuml DZ_DeaktivacijaVarnostnegaSistema
+!theme plain
+hide footbox
+
+title Deaktivacija varnostnega sistema
+
+actor Uporabnik
+
+Uporabnik -> "ZM-NadzornaPlosca": izbere možnost "deaktivacija sistema"
+activate "ZM-NadzornaPlosca"
+
+"ZM-NadzornaPlosca" -> "K-NadzornaPlosca": gumbIzbiraStanjaSistema("deaktivirano")
+activate "K-NadzornaPlosca"
+
+"K-NadzornaPlosca" --> "K-NadzornaPlosca": spremeniStanjeSistema("deaktivirano")
+"K-NadzornaPlosca" -> "R-HomeAssistant": spremeniStanjeSistema("deaktivirano")
+activate "R-HomeAssistant"
+
+"R-HomeAssistant" --> "R-HomeAssistant": posodobi stanje sistema
+"R-HomeAssistant" --> "K-NadzornaPlosca": potrditev spremembe
+deactivate "R-HomeAssistant"
+
+"K-NadzornaPlosca" -> "R-BazaPodatkov": dodajDogodek("deaktivacija sistema")
+activate "R-BazaPodatkov"
+"R-BazaPodatkov" -> "R-Dogodek": ustvari nov dogodek
+activate "R-Dogodek"
+"R-Dogodek" --> "R-Dogodek": nastavi id, vrsto, čas
+"R-Dogodek" --> "R-BazaPodatkov": vrni dogodek
+deactivate "R-Dogodek"
+"R-BazaPodatkov" --> "K-NadzornaPlosca": potrditev
+deactivate "R-BazaPodatkov"
+
+"K-NadzornaPlosca" --> "ZM-NadzornaPlosca": posodobi stanje sistema
+"ZM-NadzornaPlosca" --> "ZM-NadzornaPlosca": prikaz obvestila o spremenjenem stanju
+
+deactivate "K-NadzornaPlosca"
+deactivate "ZM-NadzornaPlosca"
+
+@enduml

@@ -1,0 +1,92 @@
+- alias: Reset Face Auth After 10 Minutes
+  trigger:
+    - platform: state
+      entity_id: input_boolean.face_authenticated
+      to: "on"
+      for: "00:10:00"
+  action:
+    - service: input_boolean.turn_off
+      target:
+        entity_id: input_boolean.face_authenticated
+
+- alias: Trigger Alarm on Motion (Glavni vhod)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_detector_vhod
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >
+        {% set sensor_mode = state_attr('binary_sensor.motion_detector_vhod', 'alarm_mode') %}
+        {% set alarm_state = states('alarm_control_panel.dom') %}
+        {{ sensor_mode in ['both', alarm_state, None] }}
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      target:
+        entity_id: alarm_control_panel.dom
+
+- alias: Trigger Alarm on Motion (Hodnik)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_detector_hodnik
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >
+        {% set sensor_mode = state_attr('binary_sensor.motion_detector_hodnik', 'alarm_mode') %}
+        {% set alarm_state = states('alarm_control_panel.dom') %}
+        {{ sensor_mode in ['both', alarm_state, None] }}
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      target:
+        entity_id: alarm_control_panel.dom
+
+- alias: Trigger Alarm on Motion (Klet)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_detector_klet
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >
+        {% set sensor_mode = state_attr('binary_sensor.motion_detector_klet', 'alarm_mode') %}
+        {% set alarm_state = states('alarm_control_panel.dom') %}
+        {{ sensor_mode in ['both', alarm_state, None] }}
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      target:
+        entity_id: alarm_control_panel.dom
+
+- alias: Trigger Alarm on Sound (Dvorisce)
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sound_detector_dvorisce
+      to: "on"
+  condition:
+    - condition: template
+      value_template: >
+        {% set sensor_mode = state_attr('binary_sensor.sound_detector_dvorisce', 'alarm_mode') %}
+        {% set alarm_state = states('alarm_control_panel.dom') %}
+        {{ sensor_mode in ['both', alarm_state, None] }}
+  action:
+    - service: alarm_control_panel.alarm_trigger
+      target:
+        entity_id: alarm_control_panel.dom
+
+
+- alias: Alarm Triggered Send Notification
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.dom
+      to: "triggered"
+  action:
+    - service: shell_command.send_custom_email
+      data:
+        to: "{{ states('input_text.user_email') }}"
+        subject: "ALARM TRIGGERED"
+        body: "The alarm at home has been triggered!"
+    - service: notify.mobile_app_crt_nx1
+      data:
+        message: "The alarm at home has been triggered!"
+        title: "ALARM TRIGGERED"
+

@@ -1,0 +1,139 @@
+@startuml RD_Sistem
+skinparam class {
+  BackgroundColor white
+  ArrowColor black
+  DefaultTextAlignment center
+}
+hide circle
+
+class "ZM-SimulacijaSenzorja" as ZM_SimulacijaSenzorja <<boundary>> {
+  -poljeID
+  +gumbAktivirajSenzor()
+  +prikaziNapako()
+}
+
+' Kontrolerji
+
+class "K-Senzor" as K_Senzor <<controller>> <<HA>>{
+  -id
+  -vrsta
+  -lokacija
+  +spremeniStanje()
+  +obdelujZaznave()
+}
+
+class "K-Alarm" as K_Alarm <<controller>> <<HA>>{
+  -id
+  -lokacija
+  +sproziSimulacijoAlarma()
+}
+
+class "K-Obvestilo" as K_Obvestilo <<controller>> {
+  -podatkiDogodka
+  -pribaviMailUporabnika()
+  +posljiObvestilo()
+}
+
+class "K-MQTT" as K_MQTT <<controller>> <<HA>>{
+  +aktivirajSenzor()
+  +vrniNapako()
+}
+
+' Razredi
+
+class "R-BazaPodatkov" as R_BazaPodatkov <<entity>> {
+  -podatki
+  +dodajDogodek()
+  +vrniMail()
+}
+
+class "R-HomeAssistant" as R_HomeAssistant <<entity>> <<HA>>{
+  -senzorji
+  -alarmi
+  -stanjeSistema
+  -podatkiUporabnika
+  +vrniSenzorje()
+  +vrniAlarme()
+  +vrniStanjeSistema()
+}
+
+class "R-Dogodek" as R_Dogodek <<entity>> {
+  -id
+  -vrsta
+  -cas
+}
+
+class "R-DogodekZvok" as R_DogodekZvok <<entity>> {
+  -id
+  -vrsta
+  -cas
+}
+
+R_DogodekZvok --|> R_Dogodek
+
+class "R-Senzor" as R_Senzor <<entity>> <<HA>>{
+  -id
+  -vrsta
+  -lokacija
+  -stanje
+}
+
+class "R-Alarm" as R_Alarm <<entity>> <<HA>>{
+  -id
+  -lokacija
+  -stanje
+}
+
+class "R-Obvestilo" as R_Obvestilo <<entity>> <<HA>> {
+  -podatkiDogodka
+  -mailUporabnika
+}
+
+' Povezave
+
+' Senzor
+K_Senzor <--> R_HomeAssistant
+K_Senzor <--> K_Alarm
+K_Senzor <--> K_Obvestilo
+K_Senzor --> R_BazaPodatkov
+
+' Alarm
+K_Alarm <--> R_HomeAssistant
+
+' HomeAssistant
+R_HomeAssistant <--> K_MQTT
+R_HomeAssistant --> R_Senzor
+R_HomeAssistant --> R_Alarm
+
+' Baza
+R_BazaPodatkov --> R_Dogodek
+
+' Obvestilo
+K_Obvestilo --> R_Obvestilo
+K_Obvestilo --> R_BazaPodatkov
+
+' MQTT
+K_MQTT <--> ZM_SimulacijaSenzorja
+
+' Boundary classes (GREEN background)
+skinparam class {
+  BackgroundColor<<boundary>> #D5F5E3
+}
+
+' Controller classes (RED background)
+skinparam class {
+  BackgroundColor<<controller>> #FADBD8
+}
+
+skinparam class {
+  BorderColor<<HA>> #007ACC
+}
+
+legend right
+  |= Barva |= Opis |
+  | ZELENA | Ozadje razredov tipa boundary (uporabniški vmesnik) |
+  | RDEČA | Ozadje razredov tipa controller (logika/krmilniki) |
+  | BELA | Ozadje razredov tipa entity (podatkovni modeli) |
+  | MODRA | Rob razredov, ki so že implementirani ali delno implementirani v Home Assistant |
+endlegend
+@enduml

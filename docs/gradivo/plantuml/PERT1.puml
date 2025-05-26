@@ -1,0 +1,69 @@
+@startuml "PERT diagram"
+
+skinparam backgroundColor transparent
+left to right direction
+
+scale 0.8
+
+<style>
+stateDiagram {
+  arrow {
+    LineColor black
+  }
+}
+</style>
+
+skinparam State {
+  BackgroundColor #e8f5fd
+  BorderColor #5FB8EC
+}
+
+skinparam defaultTextAlignment center
+
+state "Predpriprave" as A0 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  4 | 0 | 4 |\n|  0 | 0 | 4 |
+
+state "Izbira izziva" as A1 : <#e8f5fd,#e8f5fd>|  2 | 4 | 6 |\n|  0 | 4 | 6 |
+state "Pregled dokumentacije" as A2 : <#e8f5fd,#e8f5fd>|  2 | 6 | 8 |\n|  0 | 6 | 8 |
+state "Planiranje prve iteracije" as A3 : <#e8f5fd,#e8f5fd>|  2 | 8 | 10 |\n|  0 | 8 | 10 |
+state "Izdelava projektnega načrta" as A4 : <#e8f5fd,#e8f5fd>|  3 | 10 | 13 |\n|  0 | 10 | 13 |
+state "Definiranje ciljev projekta" as A5 : <#e8f5fd,#e8f5fd>|  3 | 10 | 13 |\n|  0 | 10 | 13 |
+state "Identificiranje omejitev in tveganj" as A6 : <#e8f5fd,#e8f5fd>|  3 | 10 | 13 |\n|  0 | 10 | 13 |
+state "Sestava predloga projekta" as A7 : <#e8f5fd,#e8f5fd>|  5 | 13 | 18 |\n|  0 | 13 | 18 |
+
+state "Oblikovanje UI: Osnovni mehanizem" as A8 #FFF9C4 : <#FFF9C4,#FFF9C4>|  3 | 18 | 21 |\n|  0 | 18 | 21 |
+state "Osnovna integracija z Home Assistant" as A9 #FFF9C4 : <#FFF9C4,#FFF9C4>|  3 | 21 | 24 |\n|  0 | 21 | 24 |
+state "Postavitev baze" as A10 #FFF9C4: <#FFF9C4,#FFF9C4>|  3 | 21 | 24 |\n|  0 | 21 | 24 |
+state "Obvestila v realnem času" as A11 #FFF9C4: <#FFF9C4,#FFF9C4>|  3 | 21 | 24 |\n|  0 | 21 | 24 |
+state "Simulacija senzorjev" as A12 #FFF9C4: <#FFF9C4,#FFF9C4>|  2 | 24 | 26 |\n|  0 | 24 | 26 |
+state "Izdelava osnutka sistema" as A13 #FFF9C4;line:darkred : <#FFF9C4,#FFF9C4>|  7 | 26 | 33 |\n|  0 | 26 | 33 |
+
+state "Izdelava izvedljivega sistema" as A14 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  18 | 33 | 51 |\n|  0 | 33 | 51 |
+
+
+state "Izdelava končne izdaje" as A15 #ffe6e6;line:darkred : <#ffe6e6,#ffe6e6>|  15 | 51 | 66 |\n|  0 | 51 | 66 |
+
+
+[*] -[#darkred,bold]-> A0
+A0 -[#darkred,bold]-> A1
+A1 -[#darkred,bold]-> A2
+A2 -[#darkred,bold]-> A3
+A3 -[#darkred,bold]-> A4
+A3 --> A5
+A3 --> A6
+A4 -[#darkred,bold]-> A7
+A5 --> A7
+A6 --> A7
+A7 -[#darkred,bold]-> A8
+A8 -[#darkred,bold]-> A9
+A8 --> A10
+A8 --> A11
+A9 -[#darkred,bold]-> A12
+A10 --> A12
+A11 --> A12
+A12 -[#darkred,bold]-> A13
+A13 -[#darkred,bold]-> A14
+A14 -[#darkred,bold]-> A15
+A15 -[#darkred,bold]-> [*]
+
+
+@enduml

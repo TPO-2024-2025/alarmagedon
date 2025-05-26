@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "minor_version": 1,
+  "key": "person",
+  "data": {
+    "items": [
+      {
+        "id": "ena",
+        "name": "ena",
+        "user_id": "51939b63db4e4469b455ef98315ebf51",
+        "device_trackers": []
+      },
+      {
+        "id": "bla",
+        "name": "Bla",
+        "device_trackers": [],
+        "user_id": null,
+        "picture": null
+      }
+    ]
+  }
+}
